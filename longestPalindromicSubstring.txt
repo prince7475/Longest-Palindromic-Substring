@@ -1,1 +1,172 @@
 write a function that, given a string, returns its longest palindromic substring.
+Sample input: "abaxyzzyxf"
+sample output "xyzzyx"
+Time --> O(N^2)
+Space -> O(1)
+even --> left = i, right = i + 1
+odd --> left = i, right = i
+let currMaxDiff = 0
+result = []
+
+let evenPal = helper(left, left + 1, string) [0,2] --> 2
+let odd = helper(left, left,string) [0,1] --> 1
+let evenDiff = getDifferance(eventPal)
+let oddDiff = getDifferance(odd)
+  let maxDiff
+  let longestPal
+  if(evenDiff > oddDiff){
+    maxDiff = evenDiff
+    longestPal = evenPal
+  }else {
+    maxDiff = oddDiff
+    longestPal = odd
+  }
+  
+if(maxDiff > currMaxDiff){
+  currMaxDiff = maxDiff
+  result = longestPal
+}
+
+
+
+return str.subStr(result[0],result[1] + 1)
+
+
+function longestPalindromicSubstring(string){
+  let result = []
+  let currMaxDiff = 0
+  for(let i = 0; i < string.length; i++){
+    let evenPal = palindromicHelper(i, i + 1,string) // [0,2] // helper
+    let oddPal = palindromicHelper(i,i,string)
+    
+    let evenDiff = getDiff(evenPal) // Helper
+    let oddDiff = getDiff(oddPal)
+    let maxDiff
+    let currMaxPal
+    if(evenDiff > oddDiff){
+      maxDiff = evenDiff
+      currMaxPal = evenpal
+    }else {
+      maxDiff = oddDiff
+      currMaxPal = oddPal
+    }
+    
+    if(maxDiff > currMaxDiff){
+      currMaxDiff = maxDiff
+      result = currMaxPal
+    }
+    
+  }
+  
+  return string.subStr(result[0], result[1] + 1)
+}
+
+
+function palindromicHelper(left,right,string){
+  while((string[left] && string[right]) && string[left] === string[right]){
+    left--
+    right++
+  }
+  
+  return [left + 1, right - 1]
+}
+
+
+function getDiff(array){
+  return array[1] - array[0]
+}
+
+
+
+
+
+
+
+function longestPalindromicSubstring(string){
+  let result = []
+  let maxCurrDiff = 0
+  for(let i = 0; i < string.length; i++){
+    let odd = getPalindromicHelper(i, i, string)
+    let even = getPalindromicHelper(i, i + 1, string)
+    let oddDiff = getDiff(odd)
+    let evenDiff = getDiff(even)
+    let maxDiff
+    let maxPalindromic
+    if(oddDiff > evenDiff){
+      maxDiff = oddDiff
+      maxPalindromic = odd
+    }else {
+      maxDiff = evenDiff
+      maxPalindromic = even
+    }
+    
+    if(maxDiff > maxCurrDiff){
+      maxCurrDiff = maxDiff
+      result = maxPalindromic
+    }
+  }
+  
+  return string.slice(result[0], result[1])
+}
+
+
+function getPalindromicHelper(left,right,string){
+  while(left >= 0 && right < string.length){
+    if(string[left] !== string[right]) break;
+    left--
+    right++
+  }
+  return [left + 1, right]
+}
+
+function getDiff(arr){
+  return arr[1] - arr[0]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
